@@ -63,7 +63,9 @@ class ApplicationController < Sinatra::Base
     def redirect_to_home_page
       if logged_in?
         @tow_user = current_user
-        @active_tow = @tow_user.tow_requests.find_by(status: 'Active')
+        if !dispatcher?
+          @active_tow = @tow_user.tow_requests.find_by(status: 'Active')
+        end
         erb :logged_in_index
       else
         erb :index

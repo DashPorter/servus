@@ -1,0 +1,88 @@
+<div class="inner-bg">
+  <div class="container">
+    <div class="row">
+      <h2>New relocation request</h2>
+      <div class="col-sm-6 col-sm-offset-3 text-left" style="padding-bottom: 50px;">
+        <div class="form-box">
+          <div class="form-top">
+            <div class="form-top-left">
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+          </div>
+          <div class="form-bottom">
+            <form role="form" action="/tow_requests" method="post" class="new-tow-form">
+              <h3>Tow relocation details</h3>
+              <div class="form-group">
+                <% if dispatcher? %>
+                  <label for="form-tow-driver">Tow Driver</label>
+                  <select class="form-control" name="tow_request[driver_id]">
+                    <option>Select Driver</option>
+                    <% @drivers.each do |driver| %>
+                      <option value="<%= driver.id %>"><%= driver.name %></option>
+                    <% end %>
+                  </select>
+                <% else %>
+                  <input type="hidden" name="tow_request[driver_id]" value="<%= current_user.id %>">
+                <% end %>
+              </div>
+              <div class="form-group">
+                <label for="form-starting-location">Starting Location</label>
+                <input type="name" name="tow_request[starting_location]" placeholder="123 Main Street" class="form-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label for="form-starting-location">Final Location</label>
+                <input type="name" name="tow_request[final_location]" placeholder="Car Depot" class="form-name form-control" id="form-name">
+              </div>
+              <h3>Vehicle details</h3>
+              <div class="form-group">
+                <label for="form-vehicle-type">Color</label>
+                <select class="form-control" name="vehicle[color]">
+                  <option value=''>Select Color</option>
+                  <% @colors.each do |color| %>
+                    <option value="<%= color %>"><%= color %></option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="form-tow-driver">Make</label>
+                <select class="form-control make-select" name="vehicle[make]">
+                  <option value=''>Select Make</option>
+                  <% @makes.each do |make| %>
+                    <option value="<%= make %>"><%= make %></option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="form-vehicle-type">Type</label>
+                <select class="form-control" name="vehicle[category]">
+                  <option value=''>Select Type</option>
+                  <% ['Convertible', 'Coupe', 'Hatchback', 'Minivan', 'Pickup', 'Sedan', 'SUV', 'Van', 'Wagon'].each do |type| %>
+                    <option value="<%= type %>"><%= type %></option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group tow-model">
+              </div>
+              <div class="form-group">
+                <label for="form-starting-location">License Plate Number</label>
+                <input type="name" name="vehicle[license_plate_number]" placeholder="L123456" class="form-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label for="form-vehicle-type">License Plate State</label>
+                <select class="form-control" name="vehicle[license_plate_state]">
+                  <option value=''>Select State</option>
+                  <% @states.each do |state| %>
+                    <option value="<%= state %>"><%= state %></option>
+                  <% end %>
+                </select>
+              </div>
+              <button type="submit" class="btn">Add tow request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

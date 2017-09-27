@@ -1,0 +1,7 @@
+<label for="form-tow-driver">Model</label>
+<select class="form-control model-select" name="vehicle[model]">
+  <option>Select Model</option>
+  <% @models.each do |model| %>
+    <option value="<%= model %>"><%= model %></option>
+  <% end %>
+</select>

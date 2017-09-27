@@ -1,0 +1,34 @@
+<h2>Relocation Request</h2>
+<div class="col-sm-6 col-sm-offset-3 text-left request-show">
+  <% if logged_in? %>
+    <h3>Manage request</h3>
+    <form role="form" action="/tow_requests/<%= @tow_request.id %>/edit" method="get" style="display: inline-block"><button type="submit" class="btn">Edit</button></form>
+    <% if dispatcher? %>
+      <form role="form" action="/tow_requests/<%= @tow_request.id %>/destroy" method="post" style="display: inline-block"><input name="_method" type="hidden" value="delete" /><button type="submit" class="btn">Delete</button></form>
+    <% end %>
+  <% end %>
+  <h3>Relocation details</h3>
+  <h4>Starting Location</h4> 
+  <span><%= @tow_request.starting_location %></span>
+  <h4>Final Location</h4>
+  <span><%= @tow_request.final_location %></span>
+  <% if @tow_request.driver && logged_in? %>
+  <h4>Driver Name</h4> 
+  <span><%= @tow_request.driver.name %></span>
+  <% end %>
+  <% if @tow_request.vehicle %>
+    <h3>Vehicle details</h3>
+    <h4>Start Photo</h4>
+    <img src="<%= @tow_request.vehicle.start_photo.url %>" class="vehicle-image" />
+    <h4>Color</h4>
+    <span><%= @tow_request.vehicle.color %></span>
+    <h4>Make</h4>
+    <span><%= @tow_request.vehicle.make %></span>
+    <h4>Type</h4>
+    <span><%= @tow_request.vehicle.category %></span>
+    <h4>License Plate Number</h4>
+    <span><%= @tow_request.vehicle.license_plate_number %></span>
+    <h4>License Plate State</h4>
+    <span><%= @tow_request.vehicle.license_plate_state %></span>
+  <% end %>
+</div>

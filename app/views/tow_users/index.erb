@@ -1,0 +1,7 @@
+<ul>
+  <% @tow_users.each do |tow_user| %>
+  <li>
+    <a href="/tow_users/<%= tow_user.id %>"><%= tow_user.name %></a> | <%= tow_user.email %>
+  </li>
+  <% end %>
+</ul>

@@ -1,0 +1,15 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true, bgcolor="none"]
+	"TowDispatcher" [shape=Mrecord, label="{TowDispatcher|updated_at :datetime\lname :varchar\lemail :varchar\lpassword_digest :varchar\ltype :varchar\ltow_company_id :integer\lcreated_at :datetime\lid :INTEGER\l}"]
+	"TowDriver" [shape=Mrecord, label="{TowDriver|updated_at :datetime\lname :varchar\lemail :varchar\lpassword_digest :varchar\ltype :varchar\ltow_company_id :integer\lcreated_at :datetime\lid :INTEGER\l}"]
+	"TowRequest" [shape=Mrecord, label="{TowRequest|final_location :varchar\lstarting_location :varchar\lcurrent_location :varchar\lid :INTEGER\ltow_driver_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"TowUser" [shape=Mrecord, label="{TowUser|updated_at :datetime\lname :varchar\lemail :varchar\lpassword_digest :varchar\ltype :varchar\ltow_company_id :integer\lcreated_at :datetime\lid :INTEGER\l}"]
+	"TowingCompany" [shape=Mrecord, label="{TowingCompany|id :INTEGER\lname :varchar\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Vehicle" [shape=Mrecord, label="{Vehicle|updated_at :datetime\lmake :varchar\lmodel :varchar\lyear :varchar\llicense_plate_number :varchar\ltow_request_id :integer\lcreated_at :datetime\lid :INTEGER\l}"]
+	"TowUser" -> "TowDispatcher" [label="", arrowhead="none", arrowtail="onormal"]
+	"TowDriver" -> "TowRequest" [arrowtail=odot, arrowhead=crow, dir=both color="#607BE8"]
+	"TowUser" -> "TowDriver" [label="", arrowhead="none", arrowtail="onormal"]
+	"TowRequest" -> "Vehicle" [arrowtail=odot, arrowhead=dot, dir=both color="#5CB286"]
+	"TowingCompany" -> "TowDispatcher" [arrowtail=odot, arrowhead=crow, dir=both color="#7D85D7"]
+	"TowingCompany" -> "TowDriver" [arrowtail=odot, arrowhead=crow, dir=both color="#385A04"]
+}

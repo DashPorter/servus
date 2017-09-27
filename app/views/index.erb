@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <h2>Search for your vehicle</h2>
+    <div class="col-sm-6 col-sm-offset-3 text-left">
+      <% if @errors %>
+        <p class="error"><%= @errors %></p>
+      <% end %>
+      <form class="" action="/search" method="get">
+        <div class="form-group">
+          <label for="form-starting-location">License plate number *</label>
+          <input type="name" name="vehicle[license_plate_number]" placeholder="A123940" class="form-name form-control" id="form-name">
+        </div>
+        <div class="form-group">
+          <label for="form-starting-location">License plate state *</label>
+          <input type="name" name="vehicle[license_plate_state]" placeholder="Illinois" class="form-name form-control" id="form-name">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Search</button>
+      </form>
+    </div>
+  </div>
+</div>

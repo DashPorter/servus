@@ -1,0 +1,33 @@
+<div class="inner-bg">
+  <div class="container">
+    <div class="row">
+      <h2>Edit your profile</h2>
+      <div class="col-sm-6 col-sm-offset-3 text-left">
+        <div class="form-box">
+          <div class="form-top">
+            <div class="form-top-left">
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+          </div>
+          <div class="form-bottom">
+            <form role="form" action="/tow_users/<%= @tow_user.id %>" method="post" class="signup-form">
+              <input type="hidden" name="_method" value="PATCH">
+              <h3>User details</h3>
+              <div class="form-group">
+                <h4 for="form-email">Name</h4>
+                <input type="text" name="tow_user[name]" placeholder="Name" class="form-name form-control" id="form-name" value="<%= @tow_user.name %>">
+              </div>
+              <div class="form-group">
+                <h4 for="form-email">Email</h4>
+                <input type="email" name="tow_user[emailz]" placeholder="Email" class="form-email form-control" id="form-email" value="<%= @tow_user.email %>">
+              </div>
+                <button type="submit" class="btn">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

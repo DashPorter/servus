@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h2>Relocation Requests</h2>
+    <div class="container">
+      <a href="/tow_requests/new">Create a new tow request.</a>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3 text-center tow-index-container">
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @active_tows, type: 'Active' } %>
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @pending_tows, type: 'Pending' } %>
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @completed_tows, type: 'Compelete' } %>
+      </div>
+    </div>
+  </div>
+</thead>

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <h2>My Tow Requests</h2>
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @active_tows, type: 'Active' } %>
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @pending_tows, type: 'Pending' } %>
+      <%= erb :'tow_requests/_table', locals: { tow_requests: @completed_tows, type: 'Completed' } %>
+    </div>
+  </div>
+</div>

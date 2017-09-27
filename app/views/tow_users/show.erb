@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+		<h2><%= @tow_user.name %></h2>
+		<div class="col-sm-6 col-sm-offset-3 text-left">
+			<h3>User details</h3>
+			<h4>Role</h4>
+			<span><%= @tow_user.type %></span>
+			<h4>Email</h4>
+			<span><%= @tow_user.email %></span>
+			<% if @tow_user === current_user %>
+				<h3>Manage account</h3>
+				<form role="form" action="/tow_users/<%= @tow_user.id %>/edit" method="get" style="display: inline-block"><button type="submit" class="btn">Edit</button></form>
+				<form role="form" action="/tow_users/<%= @tow_user.id %>/destroy" method="post" style="display: inline-block"><input name="_method" type="hidden" value="delete" /><button type="submit" class="btn">Delete</button></form>
+			<% end %>
+		</div>
+	</div>
+</div>

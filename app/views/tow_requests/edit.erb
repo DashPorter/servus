@@ -1,0 +1,132 @@
+<div class="inner-bg">
+  <div class="container">
+    <div class="row">
+      <h2>Edit the tow relocation</h2>
+      <div class="col-sm-6 col-sm-offset-3 text-left">
+        <div class="form-box">
+          <div class="form-top">
+            <div class="form-top-left">
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+          </div>
+          <div class="form-bottom">
+            <h3>Vehicle photos</h3>
+            <form class="top-image-form" method='POST' action="/tow_requests/<%= @tow_request.id %>/image" enctype="multipart/form-data">
+              <div class="form-group">
+                <h4 for="form-status">Start Photo</h4>
+                <img src="<%= @tow_request.vehicle.start_photo.url %>" class="vehicle-image" />
+                <input type='file' name='start_file' class='form-control'>
+              </div>
+              <button type='submit' class="btn"> Add</button>
+            </form>
+            <form role="form" action="/tow_requests/<%= @tow_request.id %>" method="post" class="signup-form">
+              <input type="hidden" name="_method" value="PUT">
+              <% if dispatcher? %>
+              <div class="form-group">
+                <h4 for="form-email">Tow Driver</h4>
+                <select class="form-control" name="tow_request[driver_id]">
+                  <% @drivers.each do |driver| %>
+                    <% if @tow_request.driver && (@tow_request.driver.id == driver.id) %>
+                      <option value="<%= driver.id %>" selected><%= driver.name %></option>
+                    <% else %>
+                      <option value="<%= driver.id %>"><%= driver.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <% else %>
+              <h3>Tow relocation details</h3>
+              <div class="form-group">
+                <h4 for="form-status">Status</h4>
+                <select class="form-control" name="tow_request[status]">
+                  <% ['Pending', 'Active', 'Completed'].each do |status| %>
+                    <% if @tow_request.status == status %>
+                      <option value="<%= status %>" selected><%= status %></option>
+                    <% else %>
+                      <option value="<%= status %>"><%= status %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <% end %>
+              <div class="form-group">
+                <h4 for="form-email">Starting Location</h4>
+                <input type="name" name="tow_request[starting_location]" placeholder="Starting Location" value="<%= @tow_request.starting_location %>" class="form-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <h4 for="form-email">Final Location</h4>
+                <input type="name" name="tow_request[final_location]" placeholder="Final Location" value="<%= @tow_request.final_location %>" class="form-name form-control" id="form-name">
+              </div>
+              <% if @tow_request.vehicle %>
+              <h3>Vehicle details</h3>
+              <div class="form-group">
+                <h4 for="form-tow-driver">Color</h4>
+                <select class="form-control color-select" name="vehicle[color]">
+                  <option value="">Select Color</option>
+                  <% @colors.each do |color| %>
+                    <% if @tow_request.vehicle.color == color %>
+                      <option value="<%= color %>" selected><%= color %></option>
+                    <% else %>
+                      <option value="<%= color %>"><%= color %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group">
+                <h4 for="form-tow-driver">Make</h4>
+                <select class="form-control make-select" name="vehicle[make]">
+                  <option value="">Select Make</option>
+                  <% @makes.each do |make| %>
+                    <% if @tow_request.vehicle.make == make %>
+                      <option value="<%= make %>" selected><%= make %></option>
+                    <% else %>
+                      <option value="<%= make %>"><%= make %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group">
+                <h4 for="form-tow-driver">Type</h4>
+                <select class="form-control" name="vehicle[category]">
+                  <option value="">Select Type</option>
+                  <% ['Convertible', 'Coupe', 'Hatchback', 'Minivan', 'Pickup', 'Sedan', 'SUV', 'Van', 'Wagon'].each do |type| %>
+                    <% if @tow_request.vehicle.category == type %>
+                      <option value="<%= type %>" selected><%= type %></option>
+                    <% else %>
+                      <option value="<%= type %>"><%= type %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="form-group">
+                <h4 for="form-starting-location">Year</h4>
+                <input type="name" name="vehicle[year]" placeholder="2017" value="<%= @tow_request.vehicle.year %>" class="form-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label for="form-starting-location">License Plate Number</label>
+                <input type="name" name="vehicle[license_plate_number]" placeholder="L123456" class="form-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label for="form-vehicle-type">License Plate State</label>
+                <select class="form-control" name="vehicle[license_plate_state]">
+                  <option value=''>Select State</option>
+                  <% @states.each do |state| %>
+                    <% if @tow_request.vehicle.license_plate_state == state %>
+                      <option value="<%= state %>" selected><%= state %></option>
+                    <% else %>
+                      <option value="<%= state %>"><%= state %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <% end %>
+              <button type="submit" class="btn">Edit tow request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

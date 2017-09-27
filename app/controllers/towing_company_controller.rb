@@ -1,0 +1,2 @@
+class TowingCompanyController < ApplicationController
+end

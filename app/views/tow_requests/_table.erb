@@ -1,0 +1,57 @@
+<h3><%= type %> Relocations</h3>
+<table class="tablesorter"> 
+        <thead>
+          <tr>
+            <th>Starting Location</th>
+            <th>Final Location</th>
+            <% if dispatcher? %>
+              <th>Tow Driver</th>
+            <% end %>
+            <th>Color</th>
+            <th>Make</th>
+            <th>Type</th>
+            <th>License Plate</th>
+            <th>License Plate State</th>
+            <th>Edit</th>
+            <% if type == 'Active' %>
+            <th>Complete</th>
+            <% end %>
+            <% if dispatcher? %>
+              <th>Delete</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody> 
+        <% tow_requests.each do |tow_request| %>
+          <tr>
+            <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.starting_location %></a></td>
+            <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.final_location %></a></td>
+            <% if (dispatcher? && tow_request.driver) %>
+              <td><a href="/tow_users/<%= tow_request.driver.id %>"><%= tow_request.driver.name %></a></td>
+            <% elsif dispatcher? %>
+              <td><a href="#"></a></td>
+            <% end %> 
+            <% if tow_request.vehicle %>
+              <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.vehicle.color %></a></td>
+              <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.vehicle.make %></a></td>
+              <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.vehicle.category %></a></td>
+              <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.vehicle.license_plate_number %></a></td>
+              <td><a href="/tow_requests/<%= tow_request.id %>"><%= tow_request.vehicle.license_plate_state %></a></td>
+            <% else %>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+            <% end %>
+            <td><form role="form" action="/tow_requests/<%= tow_request.id %>/edit" method="get" class="signup-form"><button type="submit" class="btn"><img src="img/edit.svg" /></button></form></td>
+            <% if type == 'Active' %>
+              <td><form role="form" action="/tow_requests/<%= tow_request.id %>/complete" method="post" class=" signup-form"><input name="_method" type="hidden" value="put" /><button type="submit" class="btn"><img src="img/complete.png" /></button></form></td>
+            <% end %>
+            <% if dispatcher? %>
+              <td><form role="form" action="/tow_requests/<%= tow_request.id %>/destroy" method="post" class=" signup-form"><input name="_method" type="hidden" value="delete" /><button type="submit" class="btn"><img src="img/trash.png" /></button></form></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>

@@ -1,0 +1,2 @@
+class Dispatcher < TowUser
+end

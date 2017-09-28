@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922151318) do
+ActiveRecord::Schema.define(version: 20170928195759) do
 
   create_table "dispatchers", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170922151318) do
     t.string "status", default: "Pending", null: false
     t.datetime "deleted_at"
     t.integer "tow_company_id"
+    t.float "payment_amount"
+    t.string "payment_status", default: ""
     t.index ["deleted_at"], name: "index_tow_requests_on_deleted_at"
     t.index ["driver_id"], name: "index_tow_requests_on_driver_id"
   end
